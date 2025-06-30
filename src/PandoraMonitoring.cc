@@ -1447,16 +1447,13 @@ void PandoraMonitoring::InitializeEve(Char_t transparency)
             this->InitializeLArTPCs(pMainDetectorVolume, pAluminium, transparency);
             this->InitializeGaps(pMainDetectorVolume, pVacuum, transparency);
 
-            if (!pandoraTopVolumeExists)
-            {
-                pGeoManager->SetTopVolume(pMainDetectorVolume);
-                TGeoNode *pTGeoNode = pGeoManager->GetTopNode();
-                TEveGeoTopNode *pTEveGeoTopNode = new TEveGeoTopNode(pGeoManager, pTGeoNode);
-                pTEveGeoTopNode->SetVisLevel(1);
-                pTEveGeoTopNode->GetNode()->GetVolume()->SetVisibility(kFALSE);
-                m_pEveManager->AddGlobalElement(pTEveGeoTopNode);
-                m_p3DGeometryScene->AddElement(pTEveGeoTopNode);
-            }
+	    pGeoManager->SetTopVolume(pMainDetectorVolume);
+	    TGeoNode *pTGeoNode = pGeoManager->GetTopNode();
+	    TEveGeoTopNode *pTEveGeoTopNode = new TEveGeoTopNode(pGeoManager, pTGeoNode);
+	    pTEveGeoTopNode->SetVisLevel(1);
+	    pTEveGeoTopNode->GetNode()->GetVolume()->SetVisibility(kFALSE);
+	    m_pEveManager->AddGlobalElement(pTEveGeoTopNode);
+	    m_p3DGeometryScene->AddElement(pTEveGeoTopNode);
         }
 
         TGLViewer *pTGLViewer = m_pEveManager->GetDefaultGLViewer();
